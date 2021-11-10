@@ -1,7 +1,19 @@
-<h1>Crear un nuevo Rol</h1>
-<%= form_with(model: @rol) do |formulario| %> 
-<%= formulario.label :rol %>
-<%= formulario.text_field :rol %>
+<h2>Registro de un Rol</h2>
 
-<%= formulario.submit "Crear" %>
+<%= form_with(model: @rol) do |formulario| %>
+    
+    <!-- <label id="nombre" >Nombre</label> -->
+    <%= formulario.label :rol %>
+    <!-- <input type="text" id="rol" name="rol"> -->
+    <%= formulario.text_field :rol %>
+    <% if @rol.errors[:rol].any? %>
+        <div>
+            <%= @rol.errors[:rol].first %>
+        </div>
+    <% end %>
+
+    <%= link_to "Volver", roles_path  %> <!-- link_to -->
+
+    <!-- <input type="submit" value="Registrar"> -->
+    <%= formulario.submit 'Registrar' %>
 <% end %>

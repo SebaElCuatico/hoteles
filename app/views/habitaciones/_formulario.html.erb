@@ -1,0 +1,47 @@
+<%= form_with(model: p_habitacion) do |formulario| %>
+    <div class="mb-3">
+        <%= formulario.label        :nombre, class: 'form-label' %>
+        <%= formulario.text_field   :nombre, class: 'form-control' %>
+        <% if p_habitacion.errors[:nombre].any? %>
+            <div class='alert alert-danger' role="alert"> 
+                <%= p_habitacion.errors[:nombre].first %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class='form-check form-switch' class="mb-3">
+        <%= formulario.check_box :esta_reservada, class: 'form-check-input' %> 
+        <%= formulario.label :esta_reservada, class:'form-check-label' %>
+        <% if p_habitacion.errors[:esta_reservada].any? %>
+            <div class="alert alert-danger" role="alert">
+                <%= p_habitacion.errors[:esta_reservada].first %>
+            </div>
+        <% end %>
+    </div>
+
+     <div class="mb-3">
+        <%= formulario.label        :precio, class: 'form-label' %> 
+        <%= formulario.number_field :precio, class: 'form-control' %>
+        <% if p_habitacion.errors[:precio].any? %>
+            <div class="alert alert-danger" role="alert">
+                <%= p_habitacion.errors[:precio].first %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="mb-3">
+        <%= formulario.label    :hotel_id %>
+        <%= formulario.select   :hotel_id,
+            options_from_collection_for_select(p_hoteles, :id, :nombre, p_habitacion.hotel_id),
+            { include_blank: "Selecciona el hotel de la habitación" },
+            class: 'form-select' %>
+        <% if p_habitacion.errors[:hotel_id].any? %>
+            <div class="alert alert-danger" role="alert">
+                <%= p_habitacion.errors[:hotel_id].first %>
+            </div>
+        <% end %>
+    </div>
+
+    <%= formulario.submit p_texto %>
+
+<% end %>

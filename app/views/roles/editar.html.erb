@@ -1,0 +1,15 @@
+<h1>Editar</h1>
+
+<%= form_with(model: @rol) do |formulario| %>
+    <%= formulario.label        :nombre %>
+    <%= formulario.text_field   :nombre %>
+    <% if @rol.errors[:nombre].any? %>
+        <div>
+            <%= @rol.errors[:nombre].first %>
+        </div>
+    <% end %>
+
+    <button>Cancelar</button>
+    
+    <%= formulario.submit "Actualizar" %>
+<% end %>

@@ -1,8 +1,27 @@
-<h1>Lista de Roles ❤</h1>
+<h1>Lista de Roles❤</h1>
 
-<%= @roles.each do |rol| %>
-<div>
-    <%= rol.id %>
-    <%= rol.rol %>
-</div>
-<% end %>
+<%= link_to "Crear", nuevo_rol_path %>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+    </tr>
+    <% @roles.each do |r| %>
+        <tr>
+            <td>
+                <%= r.id %>
+            </td>            
+            <td>
+                <%= r.rol %>
+            </td>
+            <td>
+                <%= link_to "Editar", editar_rol_path(r) %> 
+                <%= link_to "Eliminar", rol_path(r), method: :delete %>
+            </td>
+        </tr>
+    <% end %>
+
+
+</table>

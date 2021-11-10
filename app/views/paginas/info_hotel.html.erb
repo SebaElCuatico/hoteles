@@ -1,0 +1,15 @@
+<div class="row">
+
+    <h2><%= @hotel_encontrado.nombre %></h2>
+    <h5><%= @hotel_encontrado.ciudad.nombre %></h5>
+    <div class="mt-3">
+        <% @hotel_encontrado.estrellas.times do %>
+        ⭐
+        <% end %>
+    </div>
+    <p>
+        Habitaciones: <%= @hotel_encontrado.habitaciones.count %>
+    </p>
+    
+
+</div>
