@@ -1,6 +1,7 @@
 class PaginasController < ApplicationController
 
     layout 'layout_cliente' # Definiendo el layout a utilizar
+    before_action :validar_sesion
 
     def principal
         
@@ -32,6 +33,19 @@ class PaginasController < ApplicationController
         redirect_to root_path
     end
 
-   
-    
+    def info_ciudad
+        @lista_ciudades = Ciudad.all
+        @ciudad = Ciudad.find(params[:id])
+    rescue
+        redirect_to root_path
+    end
+
+    private
+    def validar_sesion
+        if cookies[:usuario_id]
+            @usuario = Usuario.find(cookies[:usuario_id])
+        end
+    rescue
+        @usuario = nil
+    end
 end

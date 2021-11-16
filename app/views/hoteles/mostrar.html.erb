@@ -1,0 +1,25 @@
+<div class="row pt-3" >
+ 
+    <h2><%= @hotel.nombre %></h2>
+    <h5><%= @hotel.ciudad.nombre %></h5>
+    <div class="mt-1 mb-1">
+        <% @hotel.estrellas.times do %>
+        ⭐
+        <% end %>
+    </div>
+     <h5>
+        Habitaciones: <%= @hotel.habitaciones.count %>
+    </h5>
+
+    <div class="row">
+        <% @hotel.habitaciones.each do |h| %>
+            <%= link_to reservas_path(h), class: 'col text-decoration-none p-3' do %>
+            <div class="card">
+                <div class="card-body">
+                <h5 class="card-title"> <%= h.nombre %> </h5>
+                <h6 class="card-subtitle mb-2 text-muted text-decoration-none"> <%= h.precio %></h6>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

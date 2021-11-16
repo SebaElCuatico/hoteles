@@ -1,4 +1,4 @@
-<h3>Hoteles </h3>
+<h3>Hoteles</h3>
 <div class="row row-cols-1 row-cols-md-3">
     <% @hoteles_encontrados.each do |he| %>
         <%= link_to info_hotel_path(he), class: "col text-decoration-none p-3" do %>
@@ -10,7 +10,7 @@
 <h3>Ciudades</h3>
 <div class="row">
     <% @ciudades_encontradas.each do |ce| %>
-        <%= link_to "#", class: "w-25 m-3 text-decoration-none" do %>
+        <%= link_to info_ciudad_path(ce), class: "w-25 m-3 text-decoration-none" do %>
             <%= render "tarjeta", p_titulo: ce.nombre, p_subtitulo: "" %>
         <% end %>
     <% end %>

@@ -8,6 +8,6 @@ class Rol < ApplicationRecord
 
     private
   def capitalizar_nombre
-      self.nombre = self.nombre.split(" ").map(&:capitalize).join(" ")
+      self.rol = self.rol.split(" ").map(&:capitalize).join(" ")
   end
 end

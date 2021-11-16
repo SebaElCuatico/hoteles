@@ -1,0 +1,66 @@
+<%= form_with() do |formulario| %>
+<% if flash[:reserva_creada] %>
+    <div class="alert alert-warning" role="alert">
+    <%= flash[:reserva_creada] %>
+    </div>
+<% end %>
+    <div class="pt-3">
+        <h4>Fechas</h4>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <%= formulario.label :fecha_ingreso, class: 'form-label' %>
+                        <%= formulario.date_field :fecha_ingreso, class: 'form-controle' %>
+                        <% if @reserva.errors[:fecha_ingreso].any? %>
+                        <div class="alert alert-danger" role="alert">
+                        <%= @reserva.errors[:fecha_ingreso].first %>
+                        </div>
+                        <% end %>
+                    </div>
+                    <div class="col">
+                        <%= formulario.label :fecha_salida, class: 'form-label' %>
+                        <%= formulario.date_field :fecha_salida, class: 'form-controle' %>
+                        <% if @reserva.errors[:fecha_salida].any? %>
+                        <div class="alert alert-danger" role="alert">
+                        <%= @reserva.errors[:fecha_salida].first %>
+                        </div>
+                         <% end %>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h4>Habitación</h4>
+            <div class="card">
+                <div class="card-body">
+                    <h5><%= @habitacion.nombre %></h5>
+                    <h6><%= @habitacion.hotel.nombre %>, <%= @habitacion.hotel.ciudad.nombre %></h6>
+                    <div>
+                        <% @habitacion.hotel.estrellas.times do %>
+                        ⭐
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+                <h4>Huésped</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <h5><%= @usuario.nombre %></h5>
+                        <h6>Tel <%= @usuario.telefono %> </h6>
+                        <h6>Id. <%= @usuario.identificacion %> </h6>
+                    </div>
+                </div>
+        </div>
+        <div class="row mt-3">
+            <%= formulario.submit class: 'btn btn-primary text-white' %>
+        </div>
+        <div class="row mt-3">
+        <input type="submit" value="Reservar por <%= @habitacion.precio %> CLP" class="btn btn-primary text-white">
+        </div>
+    </div>
+<% end %>

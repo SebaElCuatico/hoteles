@@ -1,4 +1,6 @@
 class Usuario < ApplicationRecord
+  has_secure_password
+  
   belongs_to :rol
   has_many :reservas
   has_many :habitaciones, through: :reservas

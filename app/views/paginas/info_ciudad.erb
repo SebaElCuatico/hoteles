@@ -1,0 +1,30 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h5>
+            <%= @ciudad.nombre %>
+        </h5>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+         <table class="table">
+            <% @ciudad.hoteles.each do |h| %>
+                 <tr>
+                   <td> 
+                   <%= link_to h.nombre, info_hotel_path(h), class: "w-25 m-3 text-decoration-none" %> 
+                   </td>
+                    <td>
+                        <% h.estrellas.to_i.times do |e| %>
+                        ⭐
+                        <% end %>
+                    </td>
+                    <td>
+                        Habitaciones <%= h.habitaciones.count %>
+                    </td>
+                </tr>
+            <% end %>    
+        </table>
+        
+    </div>
+</div>

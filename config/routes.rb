@@ -2,19 +2,24 @@ Rails.application.routes.draw do
  # Principal
  root  'paginas#principal'
  get   'paginas/:id_hotel', to: 'paginas#info_hotel', as: 'info_hotel'
+ get   'paginas/ciudad/:id', to: 'paginas#info_ciudad', as: 'info_ciudad'
 
  # Registros
+ get  'registro',         to: 'registros#crear', as: 'registro'
  post 'usuarios',      to: 'registros#guardar',  as: 'usuarios' # crear usuarios normales
- get   'registro',         to: 'registro#crear', as: 'registro'
+
+ # Reservaciones
+ get   'reservas/:id_habitacion', to: 'reservas#nueva', as: 'reservas'
+ post  'reservas/:id_habitacion', to:  'reservas#guardar'
  
 #Roles
  get 'roles', to: 'roles#listar', as: 'roles'   
  get 'roles/nuevo', to: 'roles#crear' , as: 'nuevo_rol'
  get 'roles/:id/editar', to: 'roles#editar', as: 'editar_rol'
+ get 'roles/:id', to: 'roles#mostrar', as: 'rol'
  post 'roles', to: 'roles#guardar'
  patch 'roles/:id', to: 'roles#actualizar'
  delete 'roles/:id', to: 'roles#eliminar'
-
 
  #Ciudades
  get  'ciudades',            to: 'ciudades#listar',  as: 'ciudades' 
