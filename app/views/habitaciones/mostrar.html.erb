@@ -1,0 +1,21 @@
+<div class="row">
+<% if @habitacion.foto_habitacion.attached? %>
+<% @habitacion.foto_habitacion.each do |foto| %>
+    <div class='col'>
+  <%= image_tag foto, class: 'w-100' %>
+    </div>
+  <% end %>
+<% end %>
+            <h4>Habitación</h4>
+            <div class="card">
+                <div class="card-body">
+                    <h5><%= @habitacion.nombre %></h5>
+                    <h6><%= @habitacion.hotel.nombre %>, <%= @habitacion.hotel.ciudad.nombre %></h6>
+                    <div>
+                        <% @habitacion.hotel.estrellas.times do %>
+                        ⭐
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+</div>

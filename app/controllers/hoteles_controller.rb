@@ -27,6 +27,7 @@ class HotelesController < ApplicationController
         @hotel.nombre = params_hotel[:nombre]
         @hotel.estrellas = params_hotel[:estrellas]
         @hotel.ciudad_id = params_hotel[:ciudad_id]
+        @hotel.foto_portada = params_hotel[:foto_portada]
         if @hotel.save
             redirect_to hoteles_path
         else
@@ -61,7 +62,7 @@ class HotelesController < ApplicationController
 
     private
     def params_hotel
-        return params.require(:hotel).permit(:nombre, :estrellas, :ciudad_id)
+        return params.require(:hotel).permit(:nombre, :estrellas, :ciudad_id, :foto_portada)
     end
 
     def asignar_hotel

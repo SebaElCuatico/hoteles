@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+ #Usuarios 
+ get 'perfil', to: 'usuarios#mostrar', as: 'usuario'
+ get 'iniciar_sesion', to: 'usuarios#iniciar_sesion', as: 'iniciar_sesion'
+ post 'iniciar_sesion', to: 'usuarios#crear_sesion'
+ patch 'perfil', to: 'usuarios#actualizar' 
+ delete 'cerrar_sesion', to: 'usuarios#cerrar_sesion', as: 'cerrar_sesion'
  # Principal
  root  'paginas#principal'
  get   'paginas/:id_hotel', to: 'paginas#info_hotel', as: 'info_hotel'

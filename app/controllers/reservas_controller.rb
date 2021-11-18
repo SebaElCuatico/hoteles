@@ -1,20 +1,19 @@
 class ReservasController < ApplicationController
 
     layout 'layout_cliente'
+    before_action :validar_sesion_dirigiendo_al_registro
     
     def nueva
         @habitacion = Habitacion.find(params[:id_habitacion])
-        @usuario    = Usuario.find(cookies[:usuario_id])
         @reserva = Reserva.new
     end
 
     def guardar
         @habitacion = Habitacion.find(params[:id_habitacion])
-        @usuario    = Usuario.find(cookies[:usuario_id])
-        @reserva = Reserva.new
+        @reserva = Reserva.new(params_reserva)
         @reserva.habitacion = @habitacion
         @reserva.usuario = @usuario
-        @codigo = SecureRandom.alphanumeric(5)
+        @codigo = SecureRandom.alphanumeric(5).upcase
         if @reserva.save
             flash[:reserva_creada] = "Su reserva ha sido creada"
             redirect_to root_path

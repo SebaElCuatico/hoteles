@@ -1,4 +1,13 @@
-<%= form_with() do |formulario| %>
+<%= form_with(model:@reserva) do |formulario| %>
+<% if @habitacion.foto_habitacion.attached? %>
+<div class="row">
+<% @habitacion.foto_habitacion.each do |foto| %>
+  <div class='col'>
+  <%= image_tag foto, class: 'w-100' %>
+    </div>
+  <% end %>
+</div>
+<% end %>
 <% if flash[:reserva_creada] %>
     <div class="alert alert-warning" role="alert">
     <%= flash[:reserva_creada] %>
@@ -50,17 +59,20 @@
                 <h4>Huésped</h4>
                 <div class="card">
                     <div class="card-body">
-                        <h5><%= @usuario.nombre %></h5>
-                        <h6>Tel <%= @usuario.telefono %> </h6>
-                        <h6>Id. <%= @usuario.identificacion %> </h6>
+                        <h5><%= @usuario_actual.nombre %></h5>
+                        <h6>Tel <%= @usuario_actual.telefono %> </h6>
+                        <h6>Id. <%= @usuario_actual.identificacion %> </h6>
                     </div>
                 </div>
         </div>
         <div class="row mt-3">
-            <%= formulario.submit class: 'btn btn-primary text-white' %>
+            <%= formulario.button type: 'submit', class: 'btn btn-primary text-white' do %>
+            Reservar por 
+            <span class= "fs-5">
+            <b>
+                <%= number_to_currency(@habitacion.precio, unit: 'CLP', delimiter: '.', precision: 0) %>
+            </b>
+            </span>
+            <% end %>
         </div>
-        <div class="row mt-3">
-        <input type="submit" value="Reservar por <%= @habitacion.precio %> CLP" class="btn btn-primary text-white">
-        </div>
-    </div>
 <% end %>

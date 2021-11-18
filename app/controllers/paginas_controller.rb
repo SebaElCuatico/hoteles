@@ -1,7 +1,7 @@
 class PaginasController < ApplicationController
 
     layout 'layout_cliente' # Definiendo el layout a utilizar
-    before_action :validar_sesion
+    before_action :validar_sesion_sin_redirigir
 
     def principal
         

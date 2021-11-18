@@ -1,4 +1,7 @@
 <div class="row pt-3" >
+     <% if @hotel.foto_portada.attached? %>
+      <%= image_tag @hotel.foto_portada %>
+    <% end %> 
  
     <h2><%= @hotel.nombre %></h2>
     <h5><%= @hotel.ciudad.nombre %></h5>
@@ -13,7 +16,7 @@
 
     <div class="row">
         <% @hotel.habitaciones.each do |h| %>
-            <%= link_to reservas_path(h), class: 'col text-decoration-none p-3' do %>
+            <%= link_to habitacion_path(h), class: 'col text-decoration-none p-3' do %>
             <div class="card">
                 <div class="card-body">
                 <h5 class="card-title"> <%= h.nombre %> </h5>
