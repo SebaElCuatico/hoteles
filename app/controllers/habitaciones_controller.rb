@@ -1,5 +1,5 @@
 class HabitacionesController < ApplicationController
-    
+    before_action :validar_sesion_administrador    
     before_action :asignar_habitacion, only: [:editar, :actualizar, :eliminar, :mostrar]
 
     def crear
@@ -24,7 +24,7 @@ class HabitacionesController < ApplicationController
 
     # GET /habitaciones
     def listar
-        @lista_habitaciones = Habitacion.all
+        @lista_habitaciones = Habitacion.includes(:hotel)
     end
 
      # GET /habitaciones/:id/editar

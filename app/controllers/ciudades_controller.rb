@@ -1,5 +1,5 @@
 class CiudadesController < ApplicationController
-    
+    before_action :validar_sesion_administrador
     before_action :asignar_ciudad, only: [:editar, :actualizar, :eliminar, :mostrar]
 
     def crear

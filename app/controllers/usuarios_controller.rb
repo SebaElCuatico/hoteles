@@ -1,16 +1,13 @@
 class UsuariosController < ApplicationController
   layout 'layout_cliente'
   before_action :validar_sesion_dirigiendo_al_registro, only: [:mostrar, :cerrar_sesion, :actualizar]
-  
+  before_action :validar_sesion_para_el_registro, only: [:iniciar_sesion]
+
   def mostrar
   end
   
   def actualizar
-    @usuario_actual.nombre = params_usuario[:nombre]
-    @usuario_actual.identificacion = params_usuario[:identificacion]
-    @usuario_actual.telefono = params_usuario[:telefono]
-    @usuario_actual.password = params_usuario[:password]
-    if @usuario_actual.save
+    if @usuario_actual.update(params_usuario)
       flash[:actualizar_datos] = 'Actualización completada'
       redirect_to usuario_path          
     else

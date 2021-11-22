@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-
+    before_action :validar_sesion_administrador
     before_action :asignar_rol , only: [:editar, :actualizar, :eliminar]
 
     def crear

@@ -1,5 +1,5 @@
 class HotelesController < ApplicationController
-
+    before_action :validar_sesion_administrador
     before_action :asignar_hotel, only: [:editar, :actualizar, :eliminar, :mostrar]
 
     def crear
@@ -48,7 +48,7 @@ class HotelesController < ApplicationController
     end
 
     def listar
-        @lista_hoteles = Hotel.all
+        @lista_hoteles = Hotel.includes(:ciudad)
     end 
 
     def eliminar
